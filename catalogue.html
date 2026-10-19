@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalogue · Benoît Vanhoffelen</title>
+<meta name="description" content="30 musiques originales de Benoît Vanhoffelen sous licence professionnelle : écoute des extraits, filtres par humeur, genre et instruments.">
+<meta property="og:title" content="Catalogue · Benoît Vanhoffelen">
+<meta property="og:description" content="Musique originale pour l’image : cinéma, documentaire, animation, jeu vidéo.">
+<meta property="og:image" content="assets/img/photos/piano-prisme-1600.webp">
+<meta name="theme-color" content="#0A0908">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0908'/%3E%3Cpath d='M4 28 L16 4 L28 28Z' fill='%23D4A857' opacity='.85'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/instrument-serif.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-page="catalogue" data-duree="180">
+<a class="skip" href="#contenu" data-i18n="skip">Aller au contenu</a>
+
+<header class="entete">
+  <a class="marque" href="index.html" data-lang-link>Benoît Vanhoffelen<small data-i18n="amorce.role">compositeur pour l’image</small></a>
+  <nav class="nav" id="nav" aria-label="Navigation principale">
+    <a href="index.html" data-lang-link data-i18n="nav.home">Accueil</a>
+    <a href="catalogue.html" aria-current="page" data-lang-link data-i18n="nav.catalogue">Catalogue</a>
+    <a href="credits.html" data-lang-link data-i18n="nav.credits">Crédits et presse</a>
+    <a href="index.html#projet" data-lang-link data-i18n="nav.contact">Contact</a>
+  </nav>
+  <div class="outils">
+    <div class="tc" aria-hidden="true"><i class="rec-dot"></i><span class="cue">2M1</span><span class="code">00:00:00:00</span></div>
+    <div class="langue" role="group" aria-label="Langue"><button type="button" data-lang="fr" aria-pressed="true">FR</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
+    <button class="btn-outil btn-calme" type="button" aria-pressed="false" title="Mode calme : moins d’animations" data-i18n-attr="title:calm.label"><span data-i18n="calm.on">Mode calme</span></button>
+    <button class="btn-outil menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+  </div>
+</header>
+
+<main id="contenu">
+  <section class="ouverture-int" data-cue="2M1" aria-labelledby="titre-cat">
+    <div class="fond media" id="fond-cat"></div>
+    <div class="cadre">
+      <div>
+        <div class="repere"><span class="num">2M1</span><span class="trait"></span></div>
+        <h1 id="titre-cat" class="titre-xl" data-i18n="cat.title">Catalogue</h1>
+      </div>
+      <div>
+        <p class="chapeau" data-i18n="cat.lead">30 morceaux originaux sous licence, à écouter avant de choisir.</p>
+        <p class="texte" style="margin-top:14px" data-i18n="cat.licence">Licence professionnelle : 150 € par morceau, pour un projet, dans le monde entier, perpétuelle et non exclusive.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="filtres" id="filtres">
+    <div class="cadre">
+      <div class="ligne-f">
+        <label class="sr-only" for="recherche" data-i18n="cat.search">Rechercher un titre ou un instrument</label>
+        <input class="recherche" id="recherche" type="search" placeholder="Rechercher un titre ou un instrument" data-i18n-attr="placeholder:cat.search" autocomplete="off">
+        <label class="sr-only" for="tri" data-i18n="cat.sort">Trier</label>
+        <select id="tri">
+          <option value="defaut" data-i18n="cat.sort.default">Ordre du catalogue</option>
+          <option value="titre" data-i18n="cat.sort.title">Titre</option>
+          <option value="duree" data-i18n="cat.sort.dur">Durée</option>
+        </select>
+        <span class="resume" id="resume" aria-live="polite"></span>
+        <button class="btn btn-panier" type="button" id="btn-panier" aria-haspopup="dialog"><span data-i18n="cart.open">Demande de licence</span><span class="compteur-panier" id="nb-panier">0</span></button>
+      </div>
+      <div class="ligne-f"><span data-i18n="cat.mood">Humeur</span><div class="puces" id="f-humeur" role="group" aria-label="Humeur"></div></div>
+      <div class="ligne-f"><span data-i18n="cat.genre">Genre</span><div class="puces" id="f-genre" role="group" aria-label="Genre"></div>
+        <details id="d-inst"><summary><span data-i18n="cat.inst">Instruments</span> <span id="n-inst"></span></summary><div class="puces" id="f-inst" style="margin-top:10px" role="group" aria-label="Instruments"></div></details>
+        <button class="puce" type="button" id="reset" data-i18n="cat.reset">Effacer les filtres</button>
+      </div>
+    </div>
+  </div>
+
+  <ul class="morceaux" id="morceaux" data-cue="2M2" aria-label="Morceaux"></ul>
+  <p class="vide-catalogue" id="vide" hidden data-i18n="cat.empty">Aucun morceau ne correspond à ces filtres. Retirez un filtre pour en voir davantage.</p>
+
+  <section class="sur-mesure" data-cue="2M5" aria-labelledby="titre-sm">
+    <div class="fond media" id="fond-sm"></div>
+    <div class="cadre">
+      <div class="repere"><span class="num">2M5</span><span class="trait"></span></div>
+      <h2 id="titre-sm" class="titre-l" data-split data-i18n="cat.custom.title">Besoin d’une musique écrite pour vos images ?</h2>
+      <p class="chapeau" style="margin:22px 0 30px" data-i18n="cat.custom.text">Chaque morceau de ce catalogue est né comme une cue. Benoît écrit aussi des musiques sur mesure pour votre film, votre documentaire ou votre jeu.</p>
+      <a class="btn rec magnet" href="index.html#projet" data-lang-link data-i18n="cat.custom.cta">Parlez-moi de votre projet</a>
+    </div>
+  </section>
+</main>
+
+
+
+<div class="fond-panneau" id="fond-panneau"></div>
+<aside class="panneau fiche-m" id="panneau-fiche" role="dialog" aria-modal="true" aria-labelledby="fiche-titre" tabindex="-1">
+  <div class="tete-p"><span class="etiquette-demo" style="font-size:12px">2M3</span><button class="fermer" type="button" aria-label="Fermer" data-i18n-attr="aria-label:sheet.close"></button></div>
+  <div class="corps-p" id="fiche-corps"></div>
+</aside>
+<aside class="panneau" id="panneau-panier" role="dialog" aria-modal="true" aria-labelledby="panier-titre" tabindex="-1">
+  <div class="tete-p"><h2 id="panier-titre" data-i18n="cart.title">Demande de licence</h2><button class="fermer" type="button" aria-label="Fermer" data-i18n-attr="aria-label:sheet.close"></button></div>
+  <div class="corps-p" id="panier-corps"></div>
+</aside>
+
+<footer class="fin">
+  <p class="mot-fin" aria-hidden="true" data-i18n="end.fin">Fin</p>
+  <div class="colonnes">
+    <div>
+      <p class="marque" style="font-size:30px">Benoît Vanhoffelen</p>
+      <p class="petit" data-i18n="amorce.role">compositeur pour l’image</p>
+      <p class="petit"><span class="mail" style="user-select:all">benedictus.composer@gmail.com</span><br>Lyon, France</p>
+    </div>
+    <ul>
+      <li><a class="lien-trace" href="catalogue.html" data-lang-link data-i18n="nav.catalogue">Catalogue</a></li>
+      <li><a class="lien-trace" href="credits.html" data-lang-link data-i18n="nav.credits">Crédits et presse</a></li>
+      <li><a class="lien-trace" href="index.html#projet" data-lang-link data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <ul>
+      <li><a class="lien-trace" href="https://www.imdb.com/fr/name/nm11964990/" target="_blank" rel="noopener">IMDb</a></li>
+      <li><a class="lien-trace" href="https://open.spotify.com/intl-fr/artist/47OG9mpI9QMnNH4StfiVls" target="_blank" rel="noopener">Spotify</a></li>
+      <li><a class="lien-trace" href="https://www.youtube.com/channel/UC-9TUasuYfueQ5vJlZJ8-1w" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a class="lien-trace" href="https://www.instagram.com/benoitvanhoffelen/" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a class="lien-trace" href="https://www.linkedin.com/in/beno%C3%AEt-vanhoffelen-4031861a8/" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+    <ul class="petit">
+      <li><a class="lien-trace" href="mentions-legales.html" data-lang-link data-i18n="end.legal">Mentions légales</a></li>
+      <li>SIRET 907 741 300 00012</li>
+      <li>© 2026 Benoît Vanhoffelen</li>
+      <li data-i18n="end.mock">Maquette : données de démonstration et informations manquantes signalées sur la page.</li>
+    </ul>
+  </div>
+</footer>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/SplitText.min.js"></script>
+<script src="assets/vendor/Flip.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script src="assets/js/peaks.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/js/partage.js"></script>
+<script src="assets/js/catalogue.js"></script>
+</body>
+</html>
